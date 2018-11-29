@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Home</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
+<script type="text/javascript" src="js/html5.js"></script>
+<![endif]-->
+<script src="js/jquery-1.4.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body id="page1">
+<div class="body1">
+	<div class="body2">
+		<div class="main">
+<!-- header -->
+			<header>
+				<div class="wrapper">
+					<h1><a href="index.html" id="logo">ZScope Society</a></h1>
+					<form id="search" method="post">
+						<div>
+							<input type="submit" class="submit" onclick="search()" >
+							<input type="text" class="input" id="passPwd" placeholder="Your Password">
+							<input type="text" class="input" id="scopePubAddress" placeholder="Public Address">
+						</div>
+					</form>
+				</div>
+				<div class="wrapper">
+					<nav>
+						<ul id="menu">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="Contacts.html">Contacts</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="wrapper">
+					<div class="col">
+						<h2>Zscope Technology <span>Professional Research</span></h2>
+						<p class="pad_bot1"><strong>Zscope provides a management website </strong> that provides a smart contract interface for research projects</p>
+						<ul class="list1 pad_bot2">
+							<li><a href="#">Execute smart contracts on the main chain to record projects. </a></li>
+							<li><a href="#">Create a project project in Github/zsopeorg and save the document</a></li>
+							<li><a href="#">The results of the experiment can also be Released in the blockchain at the first time, in which while discoverer's intellectual property can be protected.</a></li>
+							<li><a href="#">Peers in The medical industry can view real-time experimental results or even live video broadcasts by querying smart contracts.</a></li>
+						</ul>
+						<a href="#" class="button"><span>Read More</span></a>
+					</div>
+				</div>
+			</header>
+<!-- / header -->
+<!-- content -->
+		</div>
+	</div>
+</div>
+<div class="body3">
+	<div class="main">
+		
+<!-- / content -->
+
+	</div>
+</div>
+
+<script type="text/javascript">
+function search() {
+ var passPwd = $('#passPwd').val();
+ var scopePubAddress = $('#scopePubAddress').val();
+ var reqData = JSON.stringify(eval({"passPwd":passPwd,"scopePubAddress":scopePubAddress}));
+ $.ajax({
+    url: "/microScopeWeb/getScope",
+    data: reqData,
+    async: false,
+    contentType:"application/json",
+    type: "POST",
+    dataType:"html",
+    success:function(data) {
+    console.log("111111111:"+data);
+    data = eval("("+data+")");
+    var showUrl = data.data;
+    window.open(showUrl);
+    }
+});
+
+            
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+django
+amqp==2.3.2
+celery==4.2.1
+django-model-utils==3.1.1
+django-jet
+djangorestframework
+ontology-python-sdk
+psycopg2==2.7.3.2
+django-environ==0.4.4
+gunicorn==19.7.1
+django-filter==2.0.0
+whitenoise
+pandas
+numpy
+networkx

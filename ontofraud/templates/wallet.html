@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>Address: {{ wallet.hashid }}</p>
+    <p>Status:
+        {% if wallet.status == 'ok' %}
+           <div style="color:black">OK</div>
+        {% elif wallet.status == 'fraud'%}
+           <div style="color: red">Fraudulent</div>
+        {% elif wallet.status == 'trusted'%}
+            <div style="color: green">Trusted</div>
+        {% endif %}
+    </p>
+    <form method="post" action="/">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

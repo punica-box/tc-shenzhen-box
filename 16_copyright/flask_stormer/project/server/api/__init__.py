@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# Author:songroger
-# Jul.19.2017
 from flask import Blueprint
 from .views import add_urls
 

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# Author:songroger
-# Jul.19.2017
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, Email, Length, EqualTo

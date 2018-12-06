@@ -1,4 +1,10 @@
 import os
+import json
+import binascii
+
+from ontology.ont_sdk import OntologySdk
+from ontology.wallet.wallet_manager import WalletManager
+from ontology.smart_contract.neo_contract.abi.abi_info import AbiInfo
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -23,6 +29,26 @@ class BaseConfig(object):
     MAIL_PASSWORD = ""
     MAIL_DEBUG = False
     MAIL_SUPPRESS_SEND = False
+
+    ROOT_FOLDER = os.path.abspath(basedir)
+    WALLET_PATH = os.path.join(ROOT_FOLDER, 'wallet', 'wallet.json')
+    CONTRACTS_FOLDER = os.path.join(ROOT_FOLDER, 'contract')
+    GAS_LIMIT = 20000000
+    GAS_PRICE = 500
+    ONT_RPC_ADDRESS = 'http://45.76.243.92:20336'
+    CONTRACT_ADDRESS_HEX = ''
+    CONTRACT_ADDRESS_BYTEARRAY = bytearray(binascii.a2b_hex(CONTRACT_ADDRESS_HEX))
+    CONTRACT_ADDRESS_BYTEARRAY.reverse()
+    ONTOLOGY = OntologySdk()
+    ONTOLOGY.rpc.set_address(ONT_RPC_ADDRESS)
+    with open(os.path.join(CONTRACTS_FOLDER, 'copyright.abi.json')) as f:
+        CONTRACT_ABI = json.loads(f.read())
+        entry_point = CONTRACT_ABI.get('entrypoint', '')
+        functions = CONTRACT_ABI['abi']['functions']
+        events = CONTRACT_ABI.get('events', list())
+        ABI_INFO = AbiInfo(CONTRACT_ADDRESS_HEX, entry_point, functions, events)
+    WALLET_MANAGER = WalletManager()
+    WALLET_MANAGER.open_wallet(WALLET_PATH)
 
 
 class DevelopmentConfig(BaseConfig):

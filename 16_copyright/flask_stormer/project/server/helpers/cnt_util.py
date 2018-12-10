@@ -1,4 +1,5 @@
 from flask import current_app as app
+from ontology.account.account import Account
 
 
 def create_copyright_to_contract(ont_id_acct: Account, copyright: str) -> str:
